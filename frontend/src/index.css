@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  body {
+    @apply antialiased text-slate-800;
+    background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 55%, #e0e7ff 100%);
+    min-height: 100vh;
+  }
+
+  /* Thin purple scrollbars */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #c4b5fd; border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: #a78bfa; }
+}
+
+@layer components {
+  /* Shared card surface */
+  .surface {
+    @apply bg-white rounded-2xl shadow-card border border-brand-100/60;
+  }
+
+  /* Purple primary button */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-xl bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all
+           hover:bg-brand-800 active:scale-95
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  /* Ghost/outline button */
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-xl border border-brand-200 bg-white px-5 py-2.5 text-sm font-semibold text-brand-700
+           shadow-sm transition-all hover:bg-brand-50 active:scale-95
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  /* Danger button */
+  .btn-danger {
+    @apply inline-flex items-center gap-2 rounded-xl bg-red-600 px-5 py-2.5 text-sm font-semibold text-white
+           shadow-sm transition-all hover:bg-red-700 active:scale-95
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  /* Form input */
+  .field {
+    @apply block w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800
+           placeholder:text-slate-400 shadow-sm transition-colors
+           focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200;
+  }
+
+  /* Page-level title */
+  .page-title {
+    @apply text-2xl font-bold tracking-tight text-slate-900;
+  }
+
+  /* Section heading */
+  .section-title {
+    @apply text-base font-semibold text-slate-900;
+  }
+
+  /* Label for form fields */
+  .label {
+    @apply block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5;
+  }
+}
+
+/* Print styling for strict single-page output */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 10mm;
+  }
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  #official-timetable-doc {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
